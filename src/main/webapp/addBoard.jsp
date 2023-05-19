@@ -1,5 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="vo.*" %>
+<%
+	if(session.getAttribute("loginMemberId") == null) {
+		response.sendRedirect(request.getContextPath()+"/login.jsp");
+		return;
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +25,8 @@
 			</tr>
 			<!-- 로그인 아이디 -->
 			<%
-				String memberId = (String)session.getAttribute("loginMemberId");
+				// memberId = (String)session.getAttribute("loginMemberId");
+				String memberId = "test";
 			%>
 			<tr>
 				<th>member_id</th>

@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>로그인 창</h1>
+	<a href="<%=request.getContextPath() %>/boardList.jsp">리스트보기</a>
 	<%
 		if(session.getAttribute("loginMemberId") == null) {
 	%>
