@@ -3,6 +3,8 @@
 <%@ page import="vo.*" %>
 <%@ page import="java.sql.*"%>
 <%
+	System.out.println("boardList");
+
 	// 페이징구현및 요청값분석
 	int currentPage = 1;
 	
@@ -25,13 +27,15 @@
 		on b.board_no = f.board_no
 		order by b.createdate desc
 	*/
-	String sql="select b.board_title boardTitle, f.origin_filename originFilename, f.save_filename saveFilename, f.path path from board b inner join board_file f on b.board_no = f.board_no order by b.createdate desc";
+	String sql="select b.board_no boardNo, b.board_title boardTitle, f.board_file_no boardFileNo, f.origin_filename originFilename, f.save_filename saveFilename, f.path path from board b inner join board_file f on b.board_no = f.board_no order by b.createdate desc";
 	PreparedStatement stmt = conn.prepareStatement(sql);
 	ResultSet rs = stmt.executeQuery();
 	ArrayList<HashMap<String, Object>> list = new ArrayList<>();
 	while(rs.next()) {
 		HashMap<String, Object> m = new HashMap<>();
+		m.put("boardNo", rs.getInt("boardNo"));
 		m.put("boardTitle", rs.getString("boardTitle"));
+		m.put("boardFileNo", rs.getInt("boardFileNo"));
 		m.put("originFilename", rs.getString("originFilename"));
 		m.put("saveFilename", rs.getString("saveFilename"));
 		m.put("path", rs.getString("path"));
@@ -64,6 +68,8 @@
 							<%=(String)m.get("originFilename") %>
 						</a>
 					</td>
+					<td><a href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">수정</a></td>
+					<td><a href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">삭제</a></td>
 				</tr>
 		<% 	}
 		%>
