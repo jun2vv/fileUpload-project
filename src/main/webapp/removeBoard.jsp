@@ -3,6 +3,12 @@
 <%@ page import="vo.*" %>
 <%@ page import="java.sql.*"%>	
 <%
+	// 로그인 요청값 검사
+	if(session.getAttribute("loginMemberId") == null) {
+		response.sendRedirect(request.getContextPath()+"/login.jsp");
+		return;
+	}
+
 	// db 연동
 	String driver = "org.mariadb.jdbc.Driver";
 	String dburl = "jdbc:mariadb://127.0.0.1:3306/fileUpload";

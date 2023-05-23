@@ -50,7 +50,16 @@
 </head>
 <body>
 	<h1>목록</h1>
-	<a href="<%=request.getContextPath() %>/addBoard.jsp">리스트 추가</a>
+	<a href="<%=request.getContextPath() %>/login.jsp">로그인 창</a>
+	
+	<%	// 로그인 한사람만 리스트 추가할 수 있도록
+		if(session.getAttribute("loginMemberId") != null) {
+	%>
+			<a href="<%=request.getContextPath() %>/addBoard.jsp">리스트 추가</a>
+	
+	<% 	}
+	%>
+	<!--  로그인 안해도 리스트는 볼 수 있고 다운도가능 -->
 	<table>
 		<tr>
 			<td>board_title</td>
@@ -68,8 +77,14 @@
 							<%=(String)m.get("originFilename") %>
 						</a>
 					</td>
+				<%
+					if(session.getAttribute("loginMemberId") != null) {
+						
+				%>
 					<td><a href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">수정</a></td>
 					<td><a href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">삭제</a></td>
+				<% 	}
+				%>
 				</tr>
 		<% 	}
 		%>
