@@ -12,10 +12,14 @@
 <meta charset="UTF-8">
 <title>addBoard + file</title>
 </head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <body>
+	<div class="container">
+	<a class="btn btn-success" href="<%=request.getContextPath() %>/boardList.jsp">뒤로가기</a>
 	<h1>자료 업로드</h1>
 	<form action="<%=request.getContextPath()%>/addBoardAction.jsp" method = "post" enctype="multipart/form-data">
-		<table>
+		<table class="table table-striped">
 			<!-- 자료 업로드 게시글 -->
 			<tr>
 				<th>board_title</th>
@@ -45,5 +49,6 @@
 		</table>
 		<button type="submit">자료업로드</button>
 	</form>
+	</div>
 </body>
 </html>

@@ -3,17 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="container">
 	<h1>로그인 창</h1>
-	<a href="<%=request.getContextPath() %>/boardList.jsp">리스트보기</a>
+	<a class="btn btn-success" href="<%=request.getContextPath() %>/boardList.jsp">리스트보기</a>
 	<%
 		if(session.getAttribute("loginMemberId") == null) {
 	%>
 			<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post">
-				<table>
+				<table class="table table-bordered">
 					<tr>
 						<th>아이디</th>
 						<td>
@@ -36,5 +39,6 @@
 	<% 		
 		}
 	%>
+	</div>
 </body>
 </html>
